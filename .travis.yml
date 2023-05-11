@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t sam8211112222/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t konchok3po/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true sam8211112222/react-test npm test
+  - docker run -e CI=true konchok3po/react-test npm test
 
 after_success:
-  - docker build -t sam8211112222/multi-client ./client
-  - docker build -t sam8211112222/multi-nginx ./nginx
-  - docker build -t sam8211112222/multi-server ./server
-  - docker build -t sam8211112222/multi-worker ./worker
+  - docker build -t konchok3po/multi-client ./client
+  - docker build -t konchok3po/multi-nginx ./nginx
+  - docker build -t konchok3po/multi-server ./server
+  - docker build -t konchok3po/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push sam8211112222/multi-client
-  - docker push sam8211112222/multi-nginx
-  - docker push sam8211112222/multi-server
-  - docker push sam8211112222/multi-worker
+  - docker push konchok3po/multi-client
+  - docker push konchok3po/multi-nginx
+  - docker push konchok3po/multi-server
+  - docker push konchok3po/multi-worker
